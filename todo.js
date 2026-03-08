@@ -8,6 +8,8 @@ if (command === 'add') {
     listTodos();
 } else if (command === 'done') {
     doneTodo(detail);
+} else if (command === 'delete') {
+    deleteTodo(detail);
 }
 
 
@@ -67,6 +69,19 @@ function doneTodo(id){
         todo.done = true;
         saveTodos(todos);
         console.log(`"ID [${todo.id}]번 항목이 완료되었습니다."`);
+    } else {
+        console.log("해당 ID를 찾을 수 없습니다.");
+    }
+}
+
+//deleteTodo 함수
+function deleteTodo(id){
+    const todos = loadTodos();
+    const todo = todos.find(t => t.id === parseInt(id));
+    if (todo) {
+        todos.splice(todos.indexOf(todo), 1);
+        saveTodos(todos);
+        console.log(`"ID [${todo.id}]번 항목이 삭제되었습니다."`);
     } else {
         console.log("해당 ID를 찾을 수 없습니다.");
     }

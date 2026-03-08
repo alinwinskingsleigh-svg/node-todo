@@ -32,7 +32,7 @@ function saveTodos(todos) {
 function listTodos(){
     const todos = loadTodos(); 
     if (todos.length === 0) {
-        console.log("Todo가 없습니다!😢");
+        console.log("Todo가 없습니다.");
     }
     todos.sort((a, b) => a.id - b.id);
     todos.forEach(todo => {
@@ -56,6 +56,18 @@ function addTodo(Title){
     todos.push(newTodo);
     saveTodos(todos);
 
-    console.log(`Todo가 추가되었습니다!😆: [${Title}]`);
+    console.log(`Todo가 추가되었습니다.: [${Title}]`);
 }
 
+//doneTodo 함수
+function doneTodo(id){
+    const todos = loadTodos();
+    const todo = todos.find(t => t.id === parseInt(id));
+    if (todo) {
+        todo.done = true;
+        saveTodos(todos);
+        console.log(`"ID [${todo.id}]번 항목이 완료되었습니다."`);
+    } else {
+        console.log("해당 ID를 찾을 수 없습니다.");
+    }
+}
